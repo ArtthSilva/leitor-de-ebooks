@@ -19,7 +19,6 @@ class LivroStore {
   final ValueNotifier<String> erro = ValueNotifier<String>('');
 
   Future getLivros() async{
-
     isLoading.value = true;
 
     try {
@@ -34,4 +33,5 @@ class LivroStore {
 
     isLoading.value = false;
   } 
+
 }

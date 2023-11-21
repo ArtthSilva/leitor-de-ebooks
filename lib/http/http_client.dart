@@ -5,7 +5,6 @@ abstract class IHttpClient{
 }
 
 class HttpClient implements IHttpClient{
-
   final client = http.Client();
   
   @override
