@@ -22,7 +22,7 @@ class BookStore {
 
   final ValueNotifier<List<BookModel>> livrosFavoritos = ValueNotifier<List<BookModel>>([]);
 
-  Future getLivros() async{
+  Future loadBooks() async{
     isLoading.value = true;
 
     try {
