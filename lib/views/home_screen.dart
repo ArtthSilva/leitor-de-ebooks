@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:leitor_de_ebooks/data/models/book_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:leitor_de_ebooks/http/http_client.dart';
-import 'package:leitor_de_ebooks/service/livro_service_impl.dart';
-import 'package:leitor_de_ebooks/stores/livro_store.dart';
+import 'package:leitor_de_ebooks/services/book_service_impl.dart';
+import 'package:leitor_de_ebooks/stores/book_store.dart';
 import 'package:vocsy_epub_viewer/epub_viewer.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,8 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final LivroStore store = LivroStore(
-    service: LivroServiceImp(
+
+  final BookStore store = BookStore(
+    service: BookServiceImp(
       client: HttpClient(),
     ),
   );
@@ -38,11 +39,26 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    store.getLivros();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Livros '),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () => store.navigateToFavoriteBooksScreen(context),
+            icon: const Icon(
+              Icons.favorite,
+              color: Colors.red,
+            ),
+          ),
+        ],
       ),
       body: AnimatedBuilder(
         animation: Listenable.merge([store.isLoading, store.erro, store.state]),
@@ -78,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: store.state.value.length,
                 itemBuilder: (_, index) {
-                  final item = store.state.value[index];
+                  final livro = store.state.value[index];
                   return Container(
                     color: Colors.grey[300],
                     padding: const EdgeInsets.all(20),
@@ -103,11 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               InkWell(
                                 onTap: () async {
                                   File ebook =
-                                  await downloadEbook(item.download);
+                                      await downloadEbook(livro.download);
                                   VocsyEpub.setConfig(
                                     identifier: "iosBook",
                                     scrollDirection:
-                                    EpubScrollDirection.ALLDIRECTIONS,
+                                        EpubScrollDirection.ALLDIRECTIONS,
                                     allowSharing: true,
                                     enableTts: true,
                                     nightMode: true,
@@ -116,24 +132,57 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(2),
-                                  child: Image.network(
-                                    item.cover,
-                                    height:
-                                        MediaQuery.sizeOf(context).height * 0.4,
-                                    fit: BoxFit.cover,
+                                  child: Stack(
+                                    children: [
+                                      Image.network(
+                                        livro.cover,
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                0.4,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      ValueListenableBuilder<List<BookModel>>(
+                                        valueListenable: store.livrosFavoritos,
+                                        builder:
+                                            (context, livrosFavoritos, child) {
+                                          return Positioned(
+                                            right: -15,
+                                            top: -12,
+                                            child: InkWell(
+                                              child: IconButton(
+                                                onPressed: () => store
+                                                    .addBookFavorite(
+                                                        livro),
+                                                icon: Icon(
+                                                  size: 55,
+                                                  livrosFavoritos
+                                                          .contains(livro)
+                                                      ? Icons.bookmark
+                                                      : Icons.bookmark_add,
+                                                  color: livrosFavoritos
+                                                          .contains(livro)
+                                                      ? Colors.red
+                                                      : Colors.lightBlue,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                               Container(
                                 padding: const EdgeInsets.all(5),
                                 child: Text(
-                                  item.title,
+                                  livro.title,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(color: Colors.white),
                                 ),
                               ),
                               Text(
-                                item.author,
+                                livro.author,
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ],

@@ -1,11 +1,11 @@
 
-class LivroModel {
+class BookModel {
   final int id;
   final String title;
   final String author;
   final String cover;
   final String download;  
-  LivroModel({
+  BookModel({
     required this.id,
     required this.title,
     required this.author,
@@ -13,8 +13,8 @@ class LivroModel {
     required this.download,
   });
 
-  factory LivroModel.fromMap(Map<String, dynamic> map){
-    return LivroModel(
+  factory BookModel.fromMap(Map<String, dynamic> map){
+    return BookModel(
       id: map['id'],
       title: map['title'],
      author: map['author'],
