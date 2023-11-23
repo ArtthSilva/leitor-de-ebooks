@@ -11,7 +11,6 @@
    <p>
 
    - [📖 Detalhes do desafio](#-detalhes-do-desafio)
-   - [📱 Preview](#-preview)   
    - [🛠️ Funcionalidades e Tecnologias Estudadas](#%EF%B8%8F-funcionalidades-e-tecnologias-estudadas)
    - [🤯 Desafios e Aprendizados ao longo do caminho](#-desafios-e-aprendizados-ao-longo-do-caminho)
    - [🤔 Como usar](#-como-rodar-e-testar-o-projeto)
@@ -30,16 +29,6 @@ uma estante virtual, permitir o download de livros e a leitura dos mesmos utiliz
 
 ---
 
-<h2>📱 Preview</h2>
-
-
-https://github.com/ArtthSilva/desafio1-escribo/assets/113397588/ecbe2b06-5f8b-4778-856d-2659d85ac577
-
-   </p>
-
----
-
- 
 
 <h2>🛠️ Funcionalidades e Tecnologias Estudadas</h2>
 
