@@ -22,7 +22,7 @@ class BookWidget extends StatefulWidget {
 class _BookWidgetState extends State<BookWidget> {
   @override
   Widget build(BuildContext context) {
-    bool isFavorite = widget.livrosFavoritos.contains(widget.livro);
+  bool isFavorite = widget.livrosFavoritos.any((favoriteBook) => favoriteBook.id == widget.livro.id);
 
     return InkWell(
       onTap: widget.onTap,

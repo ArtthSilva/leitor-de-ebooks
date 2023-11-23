@@ -21,4 +21,35 @@ class BookModel {
       cover: map['cover_url'], 
       download: map['download_url']);
   }
+
+   factory BookModel.fromJson(Map<String, dynamic> json) {
+   return BookModel(
+     id: json['id'],
+     title: json['title'],
+     author: json['author'],
+     cover: json['cover'],
+     download: json['download'],
+   );
+ }
+ Map<String, dynamic> toJson() {
+  return {
+    'id': id,
+    'title': title,
+    'author': author,
+    'cover': cover,
+    'download': download,
+  };
+ }
+
+
+  @override
+ bool operator ==(Object other) {
+   if (identical(this, other)) return true;
+
+   return other is BookModel && other.id == id;
+ }
+
+ @override
+ int get hashCode => id.hashCode;
+
 }
