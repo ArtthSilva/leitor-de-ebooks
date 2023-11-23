@@ -11,6 +11,7 @@
    <p>
 
    - [📖 Detalhes do desafio](#-detalhes-do-desafio)
+   - [📱 Preview](#-preview)
    - [🛠️ Funcionalidades e Tecnologias Estudadas](#%EF%B8%8F-funcionalidades-e-tecnologias-estudadas)
    - [🤯 Desafios e Aprendizados ao longo do caminho](#-desafios-e-aprendizados-ao-longo-do-caminho)
    - [🤔 Como usar](#-como-rodar-e-testar-o-projeto)
@@ -19,6 +20,7 @@
 
 ---
 
+
 <h2>📖 Detalhes do desafio</h2>
 
 <p>
@@ -26,6 +28,13 @@
 usuários. O aplicativo deve ser capaz de baixar uma lista de livros e suas capas, exibir as capas em
 uma estante virtual, permitir o download de livros e a leitura dos mesmos utilizando um plugin específico.
 </p>
+
+---
+<h2>📱 Preview</h2>
+
+https://github.com/ArtthSilva/desafio2-escribo-flutter/assets/113397588/b0622f98-5e26-4abd-b26d-5d64c8fb335f
+
+
 
 ---
 
