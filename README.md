@@ -1,10 +1,3 @@
-<p align="center">
-  <img src="https://escribo.com/wp-content/uploads/2019/03/Logo-color.png" alt="Escribo logo" width="200"/>
-</p>
-
-<h1 align="center">Desafio 2 para vaga desenvolvedor Flutter</h1>
-
-
 
 <h2>Tópicos 📋</h2>
 
@@ -76,10 +69,10 @@ https://github.com/ArtthSilva/desafio2-escribo-flutter/assets/113397588/b0622f98
 
 
    - Clone o repositório:
-   $ git clone https://github.com/ArtthSilva/desafio2-escribo-flutter desafio2-escribo
+   $ git clone https://github.com/ArtthSilva/leitor-de-ebooks leitor-ebooks
 
    - Entre no diretório:
-   $ cd desafio2-escribo
+   $ cd leitor-ebooks
 
    - Instale as dependências:
    $ flutter pub get
